@@ -89,7 +89,7 @@ func main() {
     // check network bandwidth
     if data[6] * 100 / data[5] > 90 {
       freeBandwidth := (data[5] - data[6]) / 1000000
-      fmt.Println("Network bandwidth usage high: ", freeBandwidth, "Mbits/s available")
+      fmt.Println("Network bandwidth usage high: ", freeBandwidth, "Mbit/s available")
     }
 
     time.Sleep(time.Second)
