@@ -71,25 +71,25 @@ func main() {
 
     // check Load Average
     if data[0] > 30 {
-      fmt.Println("Load Average is too high: ", data[0])
+      fmt.Printf("Load Average is too high: %d\n", data[0])
     }
 
     // check Memory usage
     memoryUsage := data[2] * 100 / data[1]
     if memoryUsage > 80 {
-      fmt.Println("Memory usage too high: ", memoryUsage, "%")
+      fmt.Printf("Memory usage too high: %d%%\n", memoryUsage)
     }
 
     // check free disk space
     if data[4] * 100 / data[3] > 90 {
       freeDiskSpace := (data[3] - data[4]) / (1024*1024)
-      fmt.Println("Free disk space is too low: ", freeDiskSpace, "Mb left")
+      fmt.Printf("Free disk space is too low: %d Mb left\n", freeDiskSpace)
     }
 
     // check network bandwidth
     if data[6] * 100 / data[5] > 90 {
       freeBandwidth := (data[5] - data[6]) / 1000000
-      fmt.Println("Network bandwidth usage high: ", freeBandwidth, "Mbit/s available")
+      fmt.Printf("Network bandwidth usage high: %d Mbit/s available\n", freeBandwidth)
     }
 
     time.Sleep(time.Second)
