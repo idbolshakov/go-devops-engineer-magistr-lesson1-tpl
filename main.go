@@ -64,14 +64,32 @@ func main() {
 
       data[index] = i
     }
-    if isDataConvertFailed == true {
+    if isDataConvertFailed {
       handleFailedAttempt()
       continue
     }
 
-    // check server stats
+    // check Load Average
     if data[0] > 30 {
-      fmt.Println("Load Average is too high: %d", data[0])
+      fmt.Println("Load Average is too high: ", data[0])
+    }
+
+    // check Memory usage
+    var memoryUsage int = data[2] * 100 / data[1]
+    if memoryUsage > 80 {
+      fmt.Println("Memory usage too high: ", memoryUsage, "%")
+    }
+
+    // check free disk space
+    if data[4] * 100 / data[3] > 90 {
+      var freeDiskSpace int = data[3] - data[4]
+      fmt.Println("Free disk space is too low: ", freeDiskSpace, "Mb left")
+    }
+
+    // check network bandwidth
+    if data[6] * 100 / data[5] > 90 {
+      var freeBandwidth int = data[3] - data[4]
+      fmt.Println("Network bandwidth usage high: ", freeBandwidth, "Mbits/s available")
     }
 
     time.Sleep(time.Second)
